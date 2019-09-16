@@ -43,7 +43,7 @@ Notes:
 1.  numpy caused me some problems with .local version, pip3 install numpy version and this sudo apt-get install python-numpy
 2.  In the end, my pip3 has numpy version **1.17.2** 
 3.  Most of these packages have an init.py, which needed to be in PYTHONPATH.  So, place the right numpy path for python in the earlier sequence for the PYTHONPATH variable which I set in ~/.bashrc
-4.  Another trick I do is this, get into python command line, do an **import numpy**, then check **numpy.__file__** which will display the path of the numpy used.  If import numpy hits a problem, don't proceed to bazel build as it will surely abend after step 11,000+
+4.  Another trick I do is this, get into python command line, do an **import numpy**, then check **numpy.\__file\__** which will display the path of the numpy used.  If import numpy hits a problem, don't proceed to bazel build as it will surely abend after step 11,000+
 
 ### 3. Download tf2 source codes
 
