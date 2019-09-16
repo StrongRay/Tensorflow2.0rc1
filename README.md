@@ -2,7 +2,7 @@
 Building Tensorflow 2.0 RC 1 from source
 
 ## Purpose of Building from source
-When a version of tensorflow is released, you can easily do a **pip3 install tensorflow-gpu==2.0.0rc1** to install the latest software. However, there is no source codes required, it's just a module install.  When Source codes of tensorflow is required, for example, the need to access TFliteconverter etc or when you need to have a better understanding of tensorflow codes, you might need to build from source.  However, it is very timeconsuming.  And after many hours, it might fail on some conditions. I am building this, because a foot note from tensorflow says if you want to delve into Converter Python converter, you need to [build from source](https://www.tensorflow.org/lite/convert/python_api#build_from_source_code_).
+When a version of tensorflow is released, you can easily do a **pip3 install tensorflow-gpu==2.0.0rc1** to install the latest software. However, there is no source codes required, it's just a module install.  When Source codes of tensorflow is required, for example, the need to access TFliteconverter etc or when you need to have a better understanding of tensorflow codes, you might need to build from source.  However, it is very timeconsuming.  And after many hours, it might fail on some conditions. I am building this, because a foot note from tensorflow says if you want to delve into Converter Python converter, you need to [build from source](https://www.tensorflow.org/lite/convert/python_api#build_from_source_code_) and nobody is on UBUNTU 19.04 with CUDA 10.1 
 
 Last week, Tensorflow released 2.0 RC1.  Here's my environment
 
@@ -147,5 +147,91 @@ pycocotools 2.0 requires cython>=0.27.3, which is not installed.
 Installing collected packages: wrapt, setuptools
 Successfully installed setuptools-41.2.0 wrapt-1.11.2
 ```
-### 8. Test out the sample code
+### 8. Test out the sample code which was from https://www.tensorflow.org/beta/tutorials/images/intro_to_cnns
+```
+pip3 test-tf2-cnn.py
+
+2019-09-14 14:44:51.092517: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2019-09-14 14:44:51.105878: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.106789: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce 940MX major: 5 minor: 0 memoryClockRate(GHz): 1.189
+pciBusID: 0000:01:00.0
+2019-09-14 14:44:51.106946: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-09-14 14:44:51.107763: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-09-14 14:44:51.108486: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2019-09-14 14:44:51.108678: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2019-09-14 14:44:51.109755: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2019-09-14 14:44:51.110618: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2019-09-14 14:44:51.113464: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-09-14 14:44:51.113604: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.114850: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.115750: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2019-09-14 14:44:51.115977: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2019-09-14 14:44:51.138219: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2904000000 Hz
+2019-09-14 14:44:51.138489: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x3bbf7f0 executing computations on platform Host. Devices:
+2019-09-14 14:44:51.138506: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+2019-09-14 14:44:51.138699: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.142264: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce 940MX major: 5 minor: 0 memoryClockRate(GHz): 1.189
+pciBusID: 0000:01:00.0
+2019-09-14 14:44:51.142309: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-09-14 14:44:51.142323: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-09-14 14:44:51.142336: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2019-09-14 14:44:51.142348: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2019-09-14 14:44:51.142361: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2019-09-14 14:44:51.142373: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2019-09-14 14:44:51.142385: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-09-14 14:44:51.142437: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.143265: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.144022: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2019-09-14 14:44:51.144049: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-09-14 14:44:51.188895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-09-14 14:44:51.188918: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
+2019-09-14 14:44:51.188950: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
+2019-09-14 14:44:51.189195: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.189843: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.190494: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:1006] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2019-09-14 14:44:51.191115: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 1469 MB memory) -> physical GPU (device: 0, name: GeForce 940MX, pci bus id: 0000:01:00.0, compute capability: 5.0)
+2019-09-14 14:44:51.192629: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4aebba0 executing computations on platform CUDA. Devices:
+2019-09-14 14:44:51.192655: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce 940MX, Compute Capability 5.0
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 26, 26, 32)        320       
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 13, 13, 32)        0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 11, 11, 64)        18496     
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 5, 5, 64)          0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 3, 3, 64)          36928     
+=================================================================
+Total params: 55,744
+Trainable params: 55,744
+Non-trainable params: 0
+_________________________________________________________________
+2019-09-14 14:44:51.775151: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 376320000 exceeds 10% of system memory.
+Train on 60000 samples
+Epoch 1/5
+2019-09-14 14:44:52.362913: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-09-14 14:44:54.343499: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+60000/60000 [==============================] - 23s 378us/sample - loss: 0.1515 - accuracy: 0.9528
+Epoch 2/5
+60000/60000 [==============================] - 13s 210us/sample - loss: 0.0481 - accuracy: 0.9850
+Epoch 3/5
+60000/60000 [==============================] - 13s 210us/sample - loss: 0.0337 - accuracy: 0.9893
+Epoch 4/5
+60000/60000 [==============================] - 13s 209us/sample - loss: 0.0259 - accuracy: 0.9918
+Epoch 5/5
+60000/60000 [==============================] - 13s 209us/sample - loss: 0.0202 - accuracy: 0.9937
+10000/1 - 1s 103us/sample - loss: 0.0197 - accuracy: 0.9902
+0.9902
+
+```
+Notes:
+1.  The speed for the execution is quite impressive. I am on CUDA 10.1
+2.  Now, what I need to do is to wait for the **bleeding edge** guys to test out the tflite converter and uncover some bugs rather than banging my head on unit testing.  Then when the coast is clear, I can then try FLUTTER to move my trained object detector onto an Andriod and an IPHONE app.
+3.  There should still be some issues with all the codes out there since some functions of TF 1.4 is **depreciated** I wonder why a simpler word **removed** wasn't used.  Anyway, it's a nice exercise to do this routine.  And always good to learn abit of systems debugging stuff around my numpy issues before the built. 
 
