@@ -6,3 +6,5 @@ When a version of tensorflow is released, you can easily do a **pip3 install ten
 
 Last week, Tensorflow released 2.0 RC1.  Here's my environment
 
+![NVIDIA version](nvidia-smi.png)
+
