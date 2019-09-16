@@ -11,7 +11,7 @@ Last week, Tensorflow released 2.0 RC1.  Here's my environment
 
 ## Building steps
 
-1.  Download BAZEL version 0.25 for build.  
+###1.  Download BAZEL version 0.25 for build.  
 
 ```
 wget https://github.com/bazelbuild/bazel/tags download bazel-0.25.2-installer-linux-x86_64.sh
@@ -19,6 +19,6 @@ wget https://github.com/bazelbuild/bazel/tags download bazel-0.25.2-installer-li
 ```
 
 Notes:  
-a.  I normally go to ~/Downloads and do this wget. Then, when I am done with the file, I can remove them
-b.  The latest version of BAZEL might not work.  The latest **doesn't** mean the greatest.  
-c.  
+1.  I normally go to ~/Downloads and do this wget. Then, when I am done with the file, I can remove them
+2.  The latest version of BAZEL might not work.  The latest **doesn't** mean the greatest.  
+3.   
