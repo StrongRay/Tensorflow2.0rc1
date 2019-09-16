@@ -11,14 +11,24 @@ Last week, Tensorflow released 2.0 RC1.  Here's my environment
 
 ## Building steps
 
-###1.  Download BAZEL version 0.25 for build.  
+### 1. Download BAZEL version 0.25 for build.  
 
 ```
+cd ~/Downloads
 wget https://github.com/bazelbuild/bazel/tags download bazel-0.25.2-installer-linux-x86_64.sh
 ./bazel-0.25.2-installer-linux-x86_64.sh --user
+
+WARNING: --batch mode is deprecated. Please instead explicitly shut down your Bazel server using the command "bazel shutdown".
+Build label: 0.25.2
+Build target: bazel-out/k8-opt/bin/src/main/java/com/google/devtools/build/lib/bazel/BazelServer_deploy.jar
+Build time: Fri May 10 20:47:48 2019 (1557521268)
+Build timestamp: 1557521268
+Build timestamp as int: 1557521268
+
 ```
 
 Notes:  
 1.  I normally go to ~/Downloads and do this wget. Then, when I am done with the file, I can remove them
 2.  The latest version of BAZEL might not work.  The latest **doesn't** mean the greatest.  
-3.   
+3.  Specifically for 2.0rc1, I tested with **0.25.2** 
+
