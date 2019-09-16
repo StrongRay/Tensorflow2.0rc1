@@ -9,4 +9,6 @@ Last week, Tensorflow released 2.0 RC1.  Here's my environment
 ![NVIDIA version](nvidia-smi.png)
 ![OS](system.png)
 
+## Building steps
 
+1.  
