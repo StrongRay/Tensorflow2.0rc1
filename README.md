@@ -47,11 +47,14 @@ Notes:
 
 ### 3. Download tf2 source codes
 
-There are 2 methods of doing this. But do checkout the [latest release](https://github.com/tensorflow/tensorflow/releases) Then, go to the bottom of the [link](https://github.com/tensorflow/tensorflow/releases/tag/v2.0.0-rc1) and you can see the link to either the 
+There are 2 methods of doing this. But do checkout the [latest release](https://github.com/tensorflow/tensorflow/releases) Then, go to the bottom of the [link](https://github.com/tensorflow/tensorflow/releases/tag/v2.0.0-rc1) and you can see the link to either source codes ( zip or tar.gz ) version.  I prefer to download the tar.gz version but either is fine
 
-
-
-https://github.com/tensorflow/tensorflow/archive/v2.0.0-rc1.tar.gz
-
+![Assets](Assets.jpg)
 
 ```
+cd ~/Downloads
+wget https://github.com/tensorflow/tensorflow/archive/v2.0.0-rc1.tar.gz
+tar -xvf v2*.gz
+```
+Alternatively, you can **git clone** and do a **git checkout**
+
