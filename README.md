@@ -55,6 +55,97 @@ There are 2 methods of doing this. But do checkout the [latest release](https://
 cd ~/Downloads
 wget https://github.com/tensorflow/tensorflow/archive/v2.0.0-rc1.tar.gz
 tar -xvf v2*.gz
+[move the tensorflow directory to ~/]
 ```
-Alternatively, you can **git clone** and do a **git checkout**
+Alternatively, you can **git clone https://github.com/tensorflow/tensorflow.git ** and do a **git checkout xxxxx** But then again, you will need to know the version to checkout.
+
+
+### 4.  Configure
+
+```
+cd ~/tensorflow
+./configure
+```
+
+Notes:
+1.  set up python bin as **/usr/bin/python3**
+2.  set up python library as **/usr/lib/python3.7** This step is very very important to get right. Otherwise, after the last step, import tensorflow as tf will just be silent.
+3.  select **CUDA** - Then we will get a GPU built tensorflow
+
+
+### 5.  Start the BUILD
+```
+bazel build --verbose_failures --config=cuda //tensorflow/tools/pip_package:build_pip_package &
+
+INFO: Elapsed time: 28929.331s, Critical Path: 473.63s
+INFO: 25004 processes: 25004 local.
+INFO: Build completed successfully, 34536 total actions
+```
+
+Notes:
+1.   The **&** generates a background job
+2.   Wait for a long time till you see 34536 actions finnished.  It took around 5-6 hours 
+
+### 6.   Convert into a WHL file  
+```
+./bazel-bin/tensorflow/tools/pip_package/build_pip_package tensorflow_pkg
+
+Sat Sep 14 14:35:17 +08 2019 : === Preparing sources in dir: /tmp/tmp.vJA9nY1r7W
+~/tensorflow ~/tensorflow
+~/tensorflow
+/tmp/tmp.vJA9nY1r7W/tensorflow/include ~/tensorflow
+~/tensorflow
+Sat Sep 14 14:35:32 +08 2019 : === Building wheel
+warning: no files found matching '*.pyd' under directory '*'
+warning: no files found matching '*.pd' under directory '*'
+warning: no files found matching '*.dylib' under directory '*'
+warning: no files found matching '*.dll' under directory '*'
+warning: no files found matching '*.lib' under directory '*'
+warning: no files found matching '*.csv' under directory '*'
+warning: no files found matching '*.h' under directory 'tensorflow_core/include/tensorflow'
+warning: no files found matching '*' under directory 'tensorflow_core/include/third_party'
+Sat Sep 14 14:36:12 +08 2019 : === Output wheel file is in: /home/keng/tensorflow/tensorflow_pkg
+
+```
+Notes:
+1.   This conversion is very fast, taking 2 minutes.
+
+### 7.  pip3 install whl
+```
+pip3 install tensorflow_pkg/tensorflow*
+
+Requirement already satisfied: tensorflow==2.0.0rc1 from file:///home/keng/tensorflow/tensorflow_pkg/tensorflow-2.0.0rc1-cp37-cp37m-linux_x86_64.whl in /home/keng/.local/lib/python3.7/site-packages (2.0.0rc1)
+Requirement already satisfied: six>=1.10.0 in /usr/lib/python3/dist-packages (from tensorflow==2.0.0rc1) (1.12.0)
+Requirement already satisfied: termcolor>=1.1.0 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (1.1.0)
+Requirement already satisfied: grpcio>=1.8.6 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (1.22.0)
+Collecting wrapt>=1.11.1 (from tensorflow==2.0.0rc1)
+  Downloading https://files.pythonhosted.org/packages/23/84/323c2415280bc4fc880ac5050dddfb3c8062c2552b34c2e512eb4aa68f79/wrapt-1.11.2.tar.gz
+Requirement already satisfied: keras-applications>=1.0.8 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (1.0.8)
+Requirement already satisfied: gast==0.2.2 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (0.2.2)
+Requirement already satisfied: tf-estimator-nightly<1.14.0.dev2019080602,>=1.14.0.dev2019080601 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (1.14.0.dev2019080601)
+Requirement already satisfied: astor>=0.6.0 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (0.8.0)
+Requirement already satisfied: absl-py>=0.7.0 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (0.7.1)
+Requirement already satisfied: opt-einsum>=2.3.2 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (3.0.1)
+Requirement already satisfied: keras-preprocessing>=1.0.5 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (1.1.0)
+Requirement already satisfied: numpy<2.0,>=1.16.0 in /usr/lib/python3/dist-packages (from tensorflow==2.0.0rc1) (1.16.2)
+Requirement already satisfied: wheel>=0.26 in /usr/lib/python3/dist-packages (from tensorflow==2.0.0rc1) (0.32.3)
+Requirement already satisfied: protobuf>=3.6.1 in /usr/lib/python3/dist-packages (from tensorflow==2.0.0rc1) (3.6.1)
+Requirement already satisfied: google-pasta>=0.1.6 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (0.1.7)
+Requirement already satisfied: tb-nightly<1.15.0a20190807,>=1.15.0a20190806 in /home/keng/.local/lib/python3.7/site-packages (from tensorflow==2.0.0rc1) (1.15.0a20190806)
+Requirement already satisfied: h5py in /home/keng/.local/lib/python3.7/site-packages (from keras-applications>=1.0.8->tensorflow==2.0.0rc1) (2.9.0)
+Requirement already satisfied: werkzeug>=0.11.15 in /home/keng/.local/lib/python3.7/site-packages (from tb-nightly<1.15.0a20190807,>=1.15.0a20190806->tensorflow==2.0.0rc1) (0.15.5)
+Collecting setuptools>=41.0.0 (from tb-nightly<1.15.0a20190807,>=1.15.0a20190806->tensorflow==2.0.0rc1)
+  Downloading https://files.pythonhosted.org/packages/b2/86/095d2f7829badc207c893dd4ac767e871f6cd547145df797ea26baea4e2e/setuptools-41.2.0-py2.py3-none-any.whl (576kB)
+    100% |████████████████████████████████| 583kB 2.8MB/s 
+Requirement already satisfied: markdown>=2.6.8 in /home/keng/.local/lib/python3.7/site-packages (from tb-nightly<1.15.0a20190807,>=1.15.0a20190806->tensorflow==2.0.0rc1) (3.1.1)
+Building wheels for collected packages: wrapt
+  Running setup.py bdist_wheel for wrapt ... done
+  Stored in directory: /home/keng/.cache/pip/wheels/d7/de/2e/efa132238792efb6459a96e85916ef8597fcb3d2ae51590dfd
+Successfully built wrapt
+launchpadlib 1.10.6 requires testresources, which is not installed.
+pycocotools 2.0 requires cython>=0.27.3, which is not installed.
+Installing collected packages: wrapt, setuptools
+Successfully installed setuptools-41.2.0 wrapt-1.11.2
+```
+### 8. Test out the sample code
 
